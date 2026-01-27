@@ -1,0 +1,168 @@
+/* App.css */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  padding: 20px;
+}
+
+#root {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+  color: white;
+  margin-bottom: 30px;
+  font-size: 2.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Task Management Container */
+div > div {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Input Section */
+input[type="text"] {
+  width: calc(100% - 120px);
+  padding: 12px 15px;
+  font-size: 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+input[type="text"]:focus {
+  border-color: #667eea;
+}
+
+button {
+  padding: 12px 20px;
+  margin-left: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.1s;
+}
+
+button:hover {
+  background: #5568d3;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+/* Tasks Section */
+h2 {
+  margin-top: 30px;
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 1.5rem;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 10px;
+}
+
+/* Individual Task Item */
+div > div > div {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  margin-bottom: 10px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #667eea;
+  transition: background 0.2s, transform 0.2s;
+}
+
+div > div > div:hover {
+  background: #f0f1f5;
+  transform: translateX(5px);
+}
+
+/* Checkbox */
+input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin-right: 15px;
+  cursor: pointer;
+  accent-color: #667eea;
+}
+
+/* Task Text */
+span {
+  flex: 1;
+  font-size: 16px;
+  color: #333;
+  transition: color 0.3s;
+}
+
+span[style*="line-through"] {
+  color: #999;
+}
+
+/* Delete Button */
+div > div > div > button {
+  padding: 8px 15px;
+  margin-left: 10px;
+  background: #ff6b6b;
+  font-size: 14px;
+}
+
+div > div > div > button:hover {
+  background: #ee5a52;
+}
+
+/* Empty State */
+div > div:empty::after {
+  content: "No tasks yet. Add one above!";
+  display: block;
+  text-align: center;
+  color: #999;
+  font-style: italic;
+  padding: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  input[type="text"] {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  button {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  div > div > div {
+    flex-wrap: wrap;
+  }
+
+  div > div > div > button {
+    margin-top: 10px;
+    margin-left: 0;
+    width: 100%;
+  }
+}

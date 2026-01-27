@@ -1,6 +1,7 @@
 import { useState } from "react"
+import "./TaskManagement.css"
 
-export default function TaskManagementApp({onAddTask, tasks,onDeleteTask}){
+export default function TaskManagementApp({onAddTask, tasks,onDeleteTask, onToggleTask}){
 
     const[title, setTitle] =useState("");
 
@@ -20,15 +21,27 @@ export default function TaskManagementApp({onAddTask, tasks,onDeleteTask}){
              />
             <button onClick={addTaskItem}>Add Task</button>
             
-            <div>
-                <h2>Your Tasks:</h2>
+            <h2>Your Tasks:</h2>
+                
                 {tasks.map((task)=> (
                     <div key={task.id}>
-                        <p>{task.text}</p>
+                        <input 
+                        type="checkbox"
+                        checked={task.completed}
+                        onChange={() => onToggleTask(task.id)}
+                        />
+
+                        <span 
+                        style={{
+                            textDecoration: task.completed ? "line-through" : "none" 
+                        }}
+                        >
+                            {task.text}
+                        </span>
+                        
                         <button onClick={()=> onDeleteTask(task.id)}>Delete</button>
                     </div>
                 ))}
             </div>
-        </div>
     )
 } 
