@@ -4,6 +4,7 @@ import './App.css'
 
 function App() {
   const[ tasks, setTasks] =useState([]);
+  const[ filter, setFilter] =useState("All");
 
   const addTask=(taskText)=>{
     const newTask ={
@@ -25,14 +26,32 @@ function App() {
     ))
   };
 
+  const changeFilter =(filterType) =>{
+    setFilter(filterType);
+  }
+
+ let filteredTasks;
+
+ if (filter ==="Active"){
+  filteredTasks =tasks.filter(task=> task.completed === false);
+} else if (filter === "Completed"){
+  filteredTasks =tasks.filter(task=> task.completed === true);
+} else {
+  filteredTasks= tasks;
+}
+
+
   return (
     <>
     <h1>Task Management</h1>
     <TaskManagementApp 
      onAddTask ={addTask}
-     tasks={tasks} 
+     tasks={filteredTasks} 
      onDeleteTask={deleteTask}
-     onToggleTask= {toggleTask}/>
+     onToggleTask= {toggleTask}
+     filter= {filter}
+     onChangeFilter={changeFilter}
+     />
     </>
   )
 }

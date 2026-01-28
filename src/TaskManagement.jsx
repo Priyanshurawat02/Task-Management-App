@@ -1,7 +1,7 @@
 import { useState } from "react"
 import "./TaskManagement.css"
 
-export default function TaskManagementApp({onAddTask, tasks,onDeleteTask, onToggleTask}){
+export default function TaskManagementApp({onAddTask, tasks,onDeleteTask, onToggleTask,filter,onChangeFilter}){
 
     const[title, setTitle] =useState("");
 
@@ -19,8 +19,32 @@ export default function TaskManagementApp({onAddTask, tasks,onDeleteTask, onTogg
            value={title}
            onChange={(e) => setTitle(e.target.value)}
              />
-            <button onClick={addTaskItem}>Add Task</button>
+             <button onClick={addTaskItem}>Add Task</button>
+
+
+             <div className="filter-buttons">
+               <button 
+                  className={`filter-btn ${filter === "All" ? "active" : ""}`}
+                  onClick={() => onChangeFilter("All")}
+               >
+                  All
+               </button>
+               <button 
+                  className={`filter-btn ${filter === "Active" ? "active" : ""}`}
+                  onClick={() => onChangeFilter("Active")}
+               >
+                  Active
+               </button>
+               <button 
+                  className={`filter-btn ${filter === "Completed" ? "active" : ""}`}
+                  onClick={() => onChangeFilter("Completed")}
+                >
+                   Completed
+                 </button>
+                       </div>
             
+
+
             <h2>Your Tasks:</h2>
                 
                 {tasks.map((task)=> (
