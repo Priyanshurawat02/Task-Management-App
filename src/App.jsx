@@ -1,10 +1,26 @@
-import { useState } from 'react'
+import { useState , useEffect} from 'react'
 import TaskManagementApp from './TaskManagement'
 import './App.css'
 
+
 function App() {
-  const[ tasks, setTasks] =useState([]);
-  const[ filter, setFilter] =useState("All");
+  const[ tasks, setTasks] =useState(()=>{
+    const savedTasks =localStorage.getItem('tasks');
+    return savedTasks ? JSON.parse(savedTasks) : [];
+  });
+
+  useEffect(()=>{
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  }, [tasks]);
+
+  const[filter, setFilter] = useState(() => {
+  const savedFilter = localStorage.getItem('filter');
+  return savedFilter || "All";
+});
+
+useEffect(() => {
+  localStorage.setItem('filter', filter);
+}, [filter]);
 
   const addTask=(taskText)=>{
     const newTask ={
@@ -52,6 +68,7 @@ function App() {
      filter= {filter}
      onChangeFilter={changeFilter}
      />
+    
     </>
   )
 }
